@@ -42,7 +42,7 @@ jobs:
       - run: |
           set -x
           docker version
-          model_commit_id=${{ github.event.client_payload.foo || "latest" }}
+          model_commit_id=${{ github.event.client_payload.model_commit_id || "latest" }}
           container_id=$(docker create soootaleb/hetic-model:$model_commit_id)
           docker cp "$container_id:/data/model.json" .
           echo "Extracting model version $model_commit_id"
