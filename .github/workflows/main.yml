@@ -58,7 +58,7 @@ jobs:
           context: .
           file: Api.dockerfile
           # Note: tags has to be all lower-case
-          tags: latest,soootaleb/hetic-api:${{ steps.vars.outputs.sha_short }}
+          tags: soootaleb/hetic-data:latest,soootaleb/hetic-api:${{ steps.vars.outputs.sha_short }}
           # build on feature branches, push only on main branch
           push: true # ${{ github.ref == 'refs/heads/main' }}
 
