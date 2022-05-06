@@ -69,7 +69,7 @@ jobs:
         env:
           EC2_KEY: ${{ secrets.EC2_KEY }}
         run: |
-          echo $EC2_KEY > api.pem
+          echo $EC2_KEY | base64 -d > api.pem
           sudo chmod 600 api.pem
           cat api.pem
           ssh -i api.pem -oStrictHostKeyChecking=no ubuntu@35.159.50.187 "docker stop api"
