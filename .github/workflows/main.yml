@@ -64,3 +64,9 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Deploy
+        run: |
+          echo $EC2_KEY > api.pem
+          ssh -i api.pem ubuntu@35.159.50.187 "docker stop api"
+          ssh -i api.pem ubuntu@35.159.50.187 "docker run --rm --name api -i -d -p 80:5000 soootaleb/hetic-api:latest"
